@@ -1,13 +1,13 @@
 import { colors } from "../../styles/colors"
 import DetailedCard from "../detailedCard/DetailedCard"
-import { ReactComponent as ConvenioIcon } from '../../assets/convenio.svg';
+import { Shield } from "lucide-react";
 import { Button, message } from "antd"
 import PageHeader from "../PageHeader/PageHeader"
 import { useConvenios } from "../../hooks/useConvenios"
 import CreationModal from "../CreationModal/CreationModal"
 import { useState } from "react"
 
-const HealthPlans = () => {
+const Convenios = () => {
   const { data: convenios, isLoading, error, addConvenio } = useConvenios()
 
   const [open, setOpen] = useState(false);
@@ -39,7 +39,7 @@ const HealthPlans = () => {
             key={convenio.id}
             title={convenio.nome}
             value={convenio?.codigo && `Código: ${convenio.codigo}`}
-            icon={<ConvenioIcon />}
+            icon={<Shield />}
             iconColor={colors.warning.base}
             bgColor={colors.warning.background}
             description={`${convenio.numeroClientes} pacientes`}
@@ -60,4 +60,4 @@ const HealthPlans = () => {
   )
 }
 
-export default HealthPlans
+export default Convenios;

@@ -1,6 +1,6 @@
 import { colors } from "../../styles/colors"
 import DetailedCard from "../detailedCard/DetailedCard"
-import { ReactComponent as EspecialidadeIcon } from "../../assets/specialityIcon.svg";
+import { Stethoscope } from "lucide-react";
 import { useEspecialidades } from "../../hooks/useEspecialidades"
 import { Button, message } from "antd"
 import PageHeader from "../PageHeader/PageHeader"
@@ -8,7 +8,7 @@ import CreationModal from "../CreationModal/CreationModal"
 
 import { useState } from "react"
 
-const Specialities = () => {
+const Especialidades = () => {
   const [open, setOpen] = useState(false);
   const { data: especialidades, isLoading, addEspecialidade, error } = useEspecialidades();
 
@@ -38,7 +38,7 @@ const Specialities = () => {
             key={especialidade.id}
             title={especialidade.nome}
             value={`${especialidade.quantidadeMedicos} médicos`}
-            icon={<EspecialidadeIcon />}
+            icon={<Stethoscope />}
             iconColor={colors.warning.base}
             bgColor={colors.warning.background}
             description={especialidade.descricao}
@@ -69,4 +69,4 @@ const Specialities = () => {
   )
 }
 
-export default Specialities
+export default Especialidades
