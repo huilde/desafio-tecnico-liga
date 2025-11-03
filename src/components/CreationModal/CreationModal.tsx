@@ -1,0 +1,74 @@
+import React from "react";
+import { Modal, Form, Input } from "antd";
+
+export interface CreationModalField extends React.HTMLAttributes<HTMLElement> {
+  name: string;
+  label: string;
+  placeholder?: string;
+  required?: boolean;
+}
+
+interface CreationModalProps {
+  open: boolean;
+  title: string;
+  onCancel: () => void;
+  onSubmit: (values: unknown) => void;
+  fields: CreationModalField[];
+  confirmText?: string;
+  initialValues?: Record<string, unknown>;
+}
+
+const CreationModal: React.FC<CreationModalProps> = ({
+  open,
+  title,
+  onCancel,
+  onSubmit,
+  fields,
+  confirmText = "Salvar",
+  initialValues,
+}) => {
+  const [form] = Form.useForm();
+
+  const handleOk = async () => {
+    try {
+      const values = await form.validateFields();
+      onSubmit(values);
+      form.resetFields();
+    } catch (error) {
+      console.log("Erro ao validar formulário:", error);
+    }
+  };
+
+  return (
+    <Modal
+      open={open}
+      title={title}
+      okText={confirmText}
+      onCancel={() => {
+        form.resetFields();
+        onCancel();
+      }}
+      onOk={handleOk}
+    >
+      <Form form={form} layout="vertical" initialValues={initialValues}>
+        {fields.map(({ name, label, placeholder, required, ...rest }) => (
+          <Form.Item
+            key={name}
+            name={name}
+            label={label}
+            rules={
+              required
+                ? [{ required: true, message: `Por favor, insira o(a) ${label.toLowerCase()}` }]
+                : []
+            }
+            {...rest}
+          >
+            <Input placeholder={placeholder} />
+          </Form.Item>
+        ))}
+      </Form>
+    </Modal>
+  );
+};
+
+export default CreationModal;
