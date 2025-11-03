@@ -1,0 +1,18 @@
+# Imagem base
+FROM node:20-alpine
+
+# Diretório de trabalho
+WORKDIR /app
+
+# Copiar package.json e instalar dependências
+COPY package*.json ./
+RUN npm install
+
+# Copiar código
+COPY . .
+
+# Expor porta do Vite
+EXPOSE 5173
+
+# Rodar Vite em modo dev
+CMD ["npm", "run", "dev", "--", "--host"]
