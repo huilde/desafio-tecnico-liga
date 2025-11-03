@@ -33,6 +33,7 @@ export const TAB_ITEMS: TabsProps['items'] = [
     key: '4',
     label: 'Disponibilidade',
     children: <DisponibilidadePage />,
-    icon: <FieldTimeOutlined />
+    icon: <FieldTimeOutlined />,
+    disabled: true,
   },
 ];
