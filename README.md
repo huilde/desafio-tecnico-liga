@@ -58,14 +58,10 @@ docker-compose up --build
 
 
 ## 🧩 Configuração do Projeto
-- MSW (Mock API):
-- As chamadas da API são interceptadas em mocks/handlers.ts, permitindo testar funcionalidades offline.
+- MSW (Mock API): As chamadas da API são interceptadas em mocks/handlers.ts, permitindo testar funcionalidades offline.
 
-- React Query:
-- Gerencia o estado das chamadas à API, mesmo mocks, com caching e refetch automático.
+- React Query: Gerencia o estado das chamadas à API, mesmo mocks, com caching e refetch automático.
 
-- Tailwind CSS:
-- Estilização moderna com utilitários, responsiva e de fácil manutenção.
+- Tailwind CSS: Estilização moderna com utilitários, responsiva e de fácil manutenção.
 
-- ESLint + Prettier:
-- Padronização de código e identação automática, integrado ao VSCode.
+- ESLint + Prettier: Padronização de código e identação automática, integrado ao VSCode.
