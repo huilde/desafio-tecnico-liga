@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react'
 import { Table, Button, Segmented } from 'antd'
 import type { Agendamento } from '../../hooks/useAgendamentos'
 import { Columns } from './columns'
-import type { Atendimento } from '../../mocks/handlers'
+import type { Atendimento } from '../../mocks/types'
 import { useAddAtendimento } from '../../hooks/useAtendimentos'
 import ModalCreateAgendamento from '../ModalCreateAgendamento/ModalCreateAgendamento'
 import { useConvenios } from '../../hooks/useConvenios'
 import { useEspecialidades } from '../../hooks/useEspecialidades'
-import { useAddAgendamento } from '../../hooks/useAgendamentos'
+import { useAddAgendamento, useDeleteAgendamento } from '../../hooks/useAgendamentos'
 interface ScheduleListTableProps {
   data?: { agendamentos: Agendamento[] | undefined; atendimentos: Atendimento[] | undefined }
   isLoading?: boolean
@@ -30,6 +30,7 @@ const ScheduleListTable: React.FC<ScheduleListTableProps> = ({ data, isLoading, 
 
   const addAtendimento = useAddAtendimento()
   const addAgendamento = useAddAgendamento()
+  const deleteAgendamento = useDeleteAgendamento()
 
 
   const { data: convenios } = useConvenios()
@@ -48,13 +49,13 @@ const ScheduleListTable: React.FC<ScheduleListTableProps> = ({ data, isLoading, 
 
   const filteredData = view === 'agendamentos' ? localAgendamentos : localAtendimentos
 
-const handleSubmit = (data: Omit<Agendamento, "id" | "status">)=>{
-  addAgendamento.mutate(data)
-  setIsOpenModal(false);
-}
+  const handleSubmit = (data: Omit<Agendamento, "id" | "status">) => {
+    addAgendamento.mutate(data)
+    setIsOpenModal(false);
+  }
 
   const handleRemoveAgendamento = (id: number) => {
-    setLocalAgendamentos((prev) => prev.filter((item) => item.id !== id))
+    deleteAgendamento.mutate(id);
   }
 
   return (
@@ -69,23 +70,22 @@ const handleSubmit = (data: Omit<Agendamento, "id" | "status">)=>{
           onChange={(val) => setView(val as 'agendamentos' | 'atendimentos')}
         />
 
-        <Button color="danger" variant="solid"  className="text-xl font-bold" onClick={()=>setIsOpenModal(true)} >+ Novo Agendamento</Button>
+        <Button color="danger" variant="solid" className="text-xl font-bold" onClick={() => setIsOpenModal(true)} >+ Novo Agendamento</Button>
       </div>
 
       <Table
         dataSource={filteredData}
         columns={Columns({
           addAtendimento,
-          onRemove: handleRemoveAgendamento, 
+          onRemove: handleRemoveAgendamento,
         })}
         rowKey="id"
-        bordered
         pagination={{ pageSize: 5 }}
       />
 
-      <ModalCreateAgendamento convenios={convenios} medicos={medicos} especialidades={especialidades} visible={isOpenModal}  onSubmit={handleSubmit} onClose={()=> setIsOpenModal(false)}/>
+      <ModalCreateAgendamento convenios={convenios} medicos={medicos} especialidades={especialidades} visible={isOpenModal} onSubmit={handleSubmit} onClose={() => setIsOpenModal(false)} />
     </div>
   )
-} 
+}
 
 export default ScheduleListTable

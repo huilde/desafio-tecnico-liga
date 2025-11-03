@@ -13,8 +13,7 @@ export const TAB_ITEMS: TabsProps['items'] = [
   {
     key: '1',
     label: 'Agendamentos',
-    children:
-      <Agendamentos />,
+    children: <Agendamentos />,
     icon: <CalendarOutlined />
     ,
   },

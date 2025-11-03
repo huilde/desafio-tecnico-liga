@@ -8,12 +8,12 @@ const Header = () => {
         <div>
           <img src={logo} alt="logotipo liga contra o câncer" />
         </div>
-        <Divider type="vertical" />
-        <div className="flex items-center gap-[16px] flex-col">
-          <h1 className='text-[#0A0A0A] text-[16px] leading-[24px] font-normal' >
+        <Divider type="vertical" className='h-[80px]' />
+        <div className="flex flex-col">
+          <p className='text-[#0A0A0A] text-[16px] leading-[24px] font-normal' >
             Sistema de agendamento
-          </h1>
-          <span className="text-gray-600 hover:text-blue-600 transition-colors">
+          </p>
+          <span className="text-[#717182] font-sans text-[12px] font-normal leading-[16px]">
             Gestão de Consultas Médicas
           </span>
         </div>

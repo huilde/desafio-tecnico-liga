@@ -15,9 +15,7 @@ Suporte completo a **Docker**.
 
 ## 🎬 Demonstração
 
-![Demo do Sistema](./docs/demo.gif)  
-> Substitua pelo seu GIF ou screenshots do sistema em ação.
-
+caso queira ver o sistema sem precisar rodar o docker poderá acessar através desse link: 
 
 ---
 

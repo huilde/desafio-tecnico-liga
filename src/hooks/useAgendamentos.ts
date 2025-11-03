@@ -61,3 +61,19 @@ export const useAgendamentos = ()=> {
 
   return { ...query, updateStatus: mutation.mutate }
 }
+
+
+export const useDeleteAgendamento = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (id: number) => {
+      const res = await fetch(`/api/agendamentos/${id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Erro ao deletar agendamento');
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['agendamentos'] });
+    },
+  });
+}

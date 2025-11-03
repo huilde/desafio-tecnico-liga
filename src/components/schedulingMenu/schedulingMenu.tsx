@@ -2,7 +2,7 @@ import { CalendarOutlined, CheckCircleOutlined, ClockCircleOutlined, CloseCircle
 import InfoCard from "../InfoCard/InfoCard"
 import { colors } from "../../styles/colors"
 import type { Agendamento } from "../../hooks/useAgendamentos"
-import type { Atendimento } from "../../mocks/handlers"
+import type { Atendimento } from "../../mocks/types"
 
 interface SchedulingMenuProps {
   data?: { "agendamentos": Agendamento[] | undefined, "atendimentos": Atendimento[] | undefined }

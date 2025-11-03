@@ -16,9 +16,9 @@ const PageHeader: React.FC<PageHeaderProps> = ({
   return (
     <div className={`w-full mb-4 flex items-center justify-between p-[16px] ${className}`}>
       <div>
-        <h2 className="text-xl font-bold">{title}</h2>
+        <p className="text-[#0A0A0A] text-[24px] leading-[24px] font-normal mb-[4px]">{title}</p>
         {description && (
-          <p className="text-gray-600">{description}</p>
+          <p className="text-[#717182] font-sans text-[12px] font-normal leading-[16px]">{description}</p>
         )}
       </div>
       {action && <div>{action}</div>}
