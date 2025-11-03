@@ -2,8 +2,8 @@
 import type { TabsProps } from 'antd';
 import { CalendarOutlined, FieldTimeOutlined } from '@ant-design/icons';
 import Specialities from '../Specialties/Specialities';
-import SpecialityIcon from "../../assets/specialityIcon.svg?react";
-import ConvenioIcon from "../../assets/convenio.svg?react"
+import { ReactComponent as EspecialidadeIcon } from "../../assets/specialityIcon.svg";
+import { ReactComponent as ConvenioIcon } from '../../assets/convenio.svg';
 import HealthPlans from '../HealthPlans/HealthPlans';
 import Agendamentos from '../agendamentos/Agendamentos';
 import DisponibilidadePage from '../Disponibilidade/Disponibilidade';
@@ -21,7 +21,7 @@ export const TAB_ITEMS: TabsProps['items'] = [
     key: '2',
     label: 'Especialidades',
     children: <Specialities />,
-    icon: <SpecialityIcon />
+    icon: <EspecialidadeIcon />
   },
   {
     key: '3',

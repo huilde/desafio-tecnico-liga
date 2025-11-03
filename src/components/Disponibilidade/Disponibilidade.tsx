@@ -76,14 +76,6 @@ export default function DisponibilidadePage() {
     ? medicos.filter((m) => m.especialidadeId === filtros.especialidadeId)
     : []
 
-  const handleAgendar = async () => {
-    if (!form.paciente || !filtros.especialidadeId || !horarioSelecionado) return
-    const especialidade = especialidades?.find(e => e.id === filtros.especialidadeId)?.nome || ''
-    const medico = medicosFiltrados.find(m => m.id === filtros.medicoId)?.nome || ''
-
-    setModalAberto(false)
-    setForm({ paciente: '', convenio: '' })
-  }
 
   return (
     <div className="max-w-3xl mx-auto mt-8 p-6 bg-white rounded-2xl shadow-md">
@@ -154,7 +146,6 @@ export default function DisponibilidadePage() {
         title="Agendar Consulta"
         open={modalAberto}
         onCancel={() => setModalAberto(false)}
-        onOk={handleAgendar}
         okText="Confirmar Agendamento"
         confirmLoading={false}
       >

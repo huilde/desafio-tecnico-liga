@@ -32,7 +32,7 @@ const DetailedCard: React.FC<DetailedCardProps> = ({
 
           <div>
             <p>{title}</p>
-            {value && <h5 >{value}</h5>}
+            {value && <p className="mt-2 text-sm text-[#717182]" >{value}</p>}
           </div>
         </div>
         <div className="flex flex-row">
@@ -43,7 +43,7 @@ const DetailedCard: React.FC<DetailedCardProps> = ({
       </div>
 
       {description && (
-        <p className="mt-2 text-sm text-gray-600 mt-[30px]">{description}</p>
+        <p className="mt-2 text-sm text-[#717182] mt-[30px]">{description}</p>
       )}
     </Card>
   )

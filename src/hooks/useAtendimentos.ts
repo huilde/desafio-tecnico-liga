@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import type { Atendimento } from '../mocks/handlers'
+import type { Atendimento } from '../mocks/types'
 
 export const useAtendimentos = () => {
   return useQuery({

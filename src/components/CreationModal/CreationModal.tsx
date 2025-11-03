@@ -51,7 +51,7 @@ const CreationModal: React.FC<CreationModalProps> = ({
       onOk={handleOk}
     >
       <Form form={form} layout="vertical" initialValues={initialValues}>
-        {fields.map(({ name, label, placeholder, required, ...rest }) => (
+        {fields.map(({ name, label, placeholder, required }) => (
           <Form.Item
             key={name}
             name={name}
@@ -61,7 +61,6 @@ const CreationModal: React.FC<CreationModalProps> = ({
                 ? [{ required: true, message: `Por favor, insira o(a) ${label.toLowerCase()}` }]
                 : []
             }
-            {...rest}
           >
             <Input placeholder={placeholder} />
           </Form.Item>

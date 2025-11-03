@@ -1,6 +1,6 @@
 import { colors } from "../../styles/colors"
 import DetailedCard from "../detailedCard/DetailedCard"
-import ConvenioIcon from "../../assets/convenio.svg?react"
+import { ReactComponent as ConvenioIcon } from '../../assets/convenio.svg';
 import { Button, message } from "antd"
 import PageHeader from "../PageHeader/PageHeader"
 import { useConvenios } from "../../hooks/useConvenios"

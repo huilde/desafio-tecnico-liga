@@ -1,6 +1,6 @@
 import { colors } from "../../styles/colors"
 import DetailedCard from "../detailedCard/DetailedCard"
-import SpecialityIcon from "../../assets/specialityIcon.svg?react"
+import { ReactComponent as EspecialidadeIcon } from "../../assets/specialityIcon.svg";
 import { useEspecialidades } from "../../hooks/useEspecialidades"
 import { Button, message } from "antd"
 import PageHeader from "../PageHeader/PageHeader"
@@ -10,7 +10,7 @@ import { useState } from "react"
 
 const Specialities = () => {
   const [open, setOpen] = useState(false);
-  const { data:especialidades, isLoading, addEspecialidade, error } = useEspecialidades();
+  const { data: especialidades, isLoading, addEspecialidade, error } = useEspecialidades();
 
   const handleCreate = async (values: any) => {
     try {
@@ -26,10 +26,10 @@ const Specialities = () => {
 
   return (
     <div className="gap-[16px] m-[16px]">
-    <PageHeader
+      <PageHeader
         title="Especialidades Médicas"
         description="Gerencie as especialidades disponíveis para agendamento"
-        action={<Button color="danger" variant="solid" onClick={()=> setOpen(true)}>+ Adicionar Especialidade</Button>}
+        action={<Button color="danger" variant="solid" onClick={() => setOpen(true)}>+ Adicionar Especialidade</Button>}
       />
 
       <div className="flex flex-wrap gap-[16px]">
@@ -38,7 +38,7 @@ const Specialities = () => {
             key={especialidade.id}
             title={especialidade.nome}
             value={`${especialidade.quantidadeMedicos} médicos`}
-            icon={<SpecialityIcon />}
+            icon={<EspecialidadeIcon />}
             iconColor={colors.warning.base}
             bgColor={colors.warning.background}
             description={especialidade.descricao}
@@ -46,7 +46,7 @@ const Specialities = () => {
         ))}
       </div>
 
-         <CreationModal
+      <CreationModal
         open={open}
         title="Cadastrar Especialidade"
         onCancel={() => setOpen(false)}
