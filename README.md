@@ -8,8 +8,8 @@
 [![Docker](https://img.shields.io/badge/Docker-enabled-blue?logo=docker)](https://www.docker.com/)
 [![React Query](https://img.shields.io/badge/React%20Query-5.0.0-orange?logo=reactquery)](https://tanstack.com/query/v5)
 
-Um sistema moderno de **agendamento médico**, construído com **React + TypeScript + Vite**, com **Tailwind CSS** para estilização, **React Query** para gerenciamento de estado, e **MSW** para mocks de API.  
-Suporte completo a **Docker**, facilitando desenvolvimento e deploy.
+Sistema de **agendamento médico**, construído com **React + TypeScript + Vite**, com **Tailwind CSS** para estilização, **React Query** para gerenciamento de estado, e **MSW** para mocks de API.  
+Suporte completo a **Docker**.
 
 ---
 
