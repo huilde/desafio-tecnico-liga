@@ -1,6 +1,6 @@
 import type { ColumnsType } from 'antd/es/table'
 import { type Agendamento } from '../../hooks/useAgendamentos'
-import { Button, Space, Tag, notification } from 'antd'
+import { Button, Space, Tag } from 'antd'
 
 const statusColors: Record<Agendamento['status'], string> = {
   agendado: 'blue',
@@ -12,13 +12,17 @@ interface ColumnsProps {
   addAtendimento: { mutate: (data: Agendamento) => void }
   onRemove: (id: number) => void
   showActions?: boolean
+  openNotification: (message: string, description: string) => void
 }
 
 export const Columns = ({
   addAtendimento,
   onRemove,
+  openNotification,
   showActions = true,
 }: ColumnsProps): ColumnsType<Agendamento> => {
+
+
 
   const handleAction = (
     record: Agendamento,
@@ -32,7 +36,7 @@ export const Columns = ({
         ? 'Atendimento registrado com sucesso!'
         : 'Agendamento cancelado com sucesso!'
 
-    notification.success({ message: successMessage })
+    openNotification("Sucesso", successMessage);
   }
 
   const baseColumns: ColumnsType<Agendamento> = [

@@ -53,6 +53,7 @@ const Convenios = () => {
         title="Cadastrar Convênio"
         onCancel={() => setIsOpenModal(false)}
         onSubmit={handleCreate}
+        descriptionMessage="Convênio criado com sucesso!"
         fields={[
           { name: "nome", label: "Nome do Convênio", required: true, placeholder: "Ex: Unimed, Amil..." },
           { name: "codigo", label: "Código", placeholder: "Opcional" },

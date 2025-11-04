@@ -1,5 +1,5 @@
 import React from "react"
-import { Modal, Form, Input, Select, DatePicker } from "antd"
+import { Modal, Form, Input, Select, DatePicker, notification } from "antd"
 import type { Agendamento } from "../../hooks/useAgendamentos"
 import dayjs from 'dayjs'
 
@@ -39,6 +39,17 @@ const ModalCreateAgendamento: React.FC<ModalCreateConsultaProps> = ({
 }) => {
   const [form] = Form.useForm()
 
+  const [api, contextHolder] = notification.useNotification();
+
+
+  const openNotification = (message: string, description: string) => {
+    api.success({
+      message: message,
+      description: description,
+      placement: "topRight",
+    });
+  };
+
   const handleOk = () => {
     form.validateFields()
       .then(values => {
@@ -49,6 +60,8 @@ const ModalCreateAgendamento: React.FC<ModalCreateConsultaProps> = ({
         }
         onSubmit(dataFormatada)
         form.resetFields()
+        openNotification("Sucesso", "Agendamento criado com sucesso!");
+
       })
       .catch(info => {
         console.log("Erro no formulário:", info)
@@ -64,6 +77,7 @@ const ModalCreateAgendamento: React.FC<ModalCreateConsultaProps> = ({
       okText="Salvar"
       cancelText="Cancelar"
     >
+      {contextHolder}
       <Form form={form} layout="vertical">
         <Form.Item
           label="Nome do Paciente"

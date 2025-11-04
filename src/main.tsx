@@ -8,7 +8,6 @@ import '@fontsource/open-sans/700.css'
 import './index.css'
 import App from './App'
 
-
 const { worker } = await import('./mocks/browser')
 await worker.start()
 const queryClient = new QueryClient()

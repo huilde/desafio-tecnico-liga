@@ -15,7 +15,7 @@ Suporte completo a **Docker**.
 
 ## 🎬 Demonstração
 
-caso queira ver o sistema sem precisar rodar o docker poderá acessar através desse link: https://sistema-agendamento-liga.netlify.app/
+Caso queira ver o sistema sem precisar rodar o docker poderá acessar através desse link: https://sistema-agendamento-liga.netlify.app/
 
 ---
 

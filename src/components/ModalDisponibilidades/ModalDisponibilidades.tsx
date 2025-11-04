@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Modal, Input, Select, DatePicker, TimePicker, Button, Space, Card, message } from 'antd'
+import { Modal, Input, Select, DatePicker, TimePicker, Button, Space, Card, message, notification } from 'antd'
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons'
 import { useAddDisponibilidade } from '../../hooks/useDisponibilidades'
 import dayjs from 'dayjs'
@@ -43,6 +43,17 @@ const ModalDisponibilidades = ({
             fim: dayjs(d.fim, 'HH:mm'),
         })) ?? []
     )
+
+    const [api, contextHolder] = notification.useNotification();
+
+
+    const openNotification = (message: string, description: string) => {
+        api.success({
+            message: message,
+            description: description,
+            placement: "topRight",
+        });
+    };
 
     const addDisponibilidade = useAddDisponibilidade()
     const gerarHorarios = (inicio: string, fim: string) => {
@@ -105,6 +116,7 @@ const ModalDisponibilidades = ({
         setNome("");
         setEspecialidade("");
         setDatas([]);
+        openNotification("Sucesso", "Disponibilidade(s) adicionada(s) com sucesso!");
     }
 
     const isFormValid = () => {
@@ -126,6 +138,7 @@ const ModalDisponibilidades = ({
             centered
             width="50vw"
         >
+            {contextHolder}
             <div className="flex flex-col gap-4">
                 <div className="flex gap-[12px]">
                     <div className="flex-1">

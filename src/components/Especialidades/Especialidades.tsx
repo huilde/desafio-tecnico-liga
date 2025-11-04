@@ -51,6 +51,8 @@ const Especialidades = () => {
         open={isOpenModal}
         title="Cadastrar Especialidade"
         onCancel={() => setIsOpenModal(false)}
+        descriptionMessage="Especialidade criada com sucesso!"
+
         onSubmit={handleCreate}
         fields={[
           {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Form, Input } from "antd";
+import { Modal, Form, Input, notification } from "antd";
 import type { CreationModalProps } from "./CreationModal.types";
 
 
@@ -9,16 +9,29 @@ const CreationModal: React.FC<CreationModalProps> = ({
   onCancel,
   onSubmit,
   fields,
+  descriptionMessage = "Operação realizada com sucesso!",
   confirmText = "Salvar",
   initialValues,
 }) => {
   const [form] = Form.useForm();
+
+  const [api, contextHolder] = notification.useNotification();
+
+
+  const openNotification = (message: string, description: string) => {
+    api.success({
+      message: message,
+      description: description,
+      placement: "topRight",
+    });
+  };
 
   const handleOk = async () => {
     try {
       const values = await form.validateFields();
       onSubmit(values);
       form.resetFields();
+      openNotification("Sucesso", descriptionMessage);
     } catch (error) {
       console.log("Erro ao validar formulário:", error);
     }
@@ -35,6 +48,7 @@ const CreationModal: React.FC<CreationModalProps> = ({
       }}
       onOk={handleOk}
     >
+      {contextHolder}
       <Form form={form} layout="vertical" initialValues={initialValues}>
         {fields.map(({ name, label, placeholder, required }) => (
           <Form.Item

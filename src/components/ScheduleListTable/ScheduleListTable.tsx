@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Table, Button, Segmented } from 'antd'
+import { Table, Button, Segmented, notification } from 'antd'
 import type { Agendamento } from '../../hooks/useAgendamentos'
 import { Columns } from './columns'
 import type { Atendimento } from '../../mocks/types'
@@ -23,6 +23,7 @@ const medicos = [
 
 
 
+
 const ScheduleListTable: React.FC<ScheduleListTableProps> = ({ data, isLoading, error }) => {
   const [view, setView] = useState<'agendamentos' | 'atendimentos'>('agendamentos')
   const [localAgendamentos, setLocalAgendamentos] = useState<Agendamento[]>(data?.agendamentos || [])
@@ -36,6 +37,19 @@ const ScheduleListTable: React.FC<ScheduleListTableProps> = ({ data, isLoading, 
 
   const { data: convenios } = useConvenios()
   const { data: especialidades } = useEspecialidades()
+
+
+  const [api, contextHolder] = notification.useNotification();
+
+
+  const openNotification = (message: string, description: string) => {
+    api.success({
+      message: message,
+      description: description,
+      placement: "topRight",
+    });
+  };
+
 
   useEffect(() => {
     setLocalAgendamentos(data?.agendamentos || [])
@@ -61,6 +75,7 @@ const ScheduleListTable: React.FC<ScheduleListTableProps> = ({ data, isLoading, 
 
   return (
     <div className="m-[16px]">
+      {contextHolder}
       <div className="flex justify-between items-center mb-4 m-[16px]">
         <Segmented
           options={[
@@ -79,6 +94,7 @@ const ScheduleListTable: React.FC<ScheduleListTableProps> = ({ data, isLoading, 
         columns={Columns({
           addAtendimento,
           onRemove: handleRemoveAgendamento,
+          openNotification,
           showActions: view === 'agendamentos',
         })}
         rowKey="id"

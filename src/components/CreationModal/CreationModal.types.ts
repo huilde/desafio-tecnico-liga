@@ -12,5 +12,6 @@ export interface CreationModalProps {
     onSubmit: (values: unknown) => void;
     fields: CreationModalField[];
     confirmText?: string;
+    descriptionMessage?: string;
     initialValues?: Record<string, unknown>;
 }
