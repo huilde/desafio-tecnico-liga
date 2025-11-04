@@ -71,7 +71,7 @@ docker-compose up --build
     npm install
 ```
 
-- 3️⃣ Rodar em modo desenvolvimento
+3. Rodar em modo desenvolvimento
 ```bash
     npm run dev
 ```
