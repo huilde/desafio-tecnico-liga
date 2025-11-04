@@ -1,6 +1,8 @@
 import React from "react"
 import { Modal, Form, Input, Select, DatePicker } from "antd"
 import type { Agendamento } from "../../hooks/useAgendamentos"
+import dayjs from 'dayjs'
+
 
 const { Option } = Select
 
@@ -116,7 +118,7 @@ const ModalCreateAgendamento: React.FC<ModalCreateConsultaProps> = ({
           name="data"
           rules={[{ required: true, message: "Selecione uma data" }]}
         >
-          <DatePicker style={{ width: "100%" }} />
+          <DatePicker minDate={dayjs().startOf('day')} style={{ width: "100%" }} />
         </Form.Item>
 
         <Form.Item

@@ -1,6 +1,6 @@
 import type { ColumnsType } from 'antd/es/table'
 import { type Agendamento } from '../../hooks/useAgendamentos'
-import { Button, Space, Tag } from 'antd'
+import { Button, Space, Tag, notification } from 'antd'
 
 const statusColors: Record<Agendamento['status'], string> = {
   agendado: 'blue',
@@ -8,15 +8,34 @@ const statusColors: Record<Agendamento['status'], string> = {
   atendido: 'green',
 }
 
-
-
 interface ColumnsProps {
   addAtendimento: { mutate: (data: Agendamento) => void }
   onRemove: (id: number) => void
+  showActions?: boolean
 }
 
-export const Columns = ({ addAtendimento, onRemove }: ColumnsProps): ColumnsType<Agendamento> => {
-  return [
+export const Columns = ({
+  addAtendimento,
+  onRemove,
+  showActions = true,
+}: ColumnsProps): ColumnsType<Agendamento> => {
+
+  const handleAction = (
+    record: Agendamento,
+    novoStatus: Agendamento['status']
+  ) => {
+    addAtendimento.mutate({ ...record, status: novoStatus })
+    onRemove(record.id)
+
+    const successMessage =
+      novoStatus === 'atendido'
+        ? 'Atendimento registrado com sucesso!'
+        : 'Agendamento cancelado com sucesso!'
+
+    notification.success({ message: successMessage })
+  }
+
+  const baseColumns: ColumnsType<Agendamento> = [
     { title: 'Paciente', dataIndex: 'paciente', key: 'paciente' },
     { title: 'Especialidade', dataIndex: 'especialidade', key: 'especialidade' },
     { title: 'Médico', dataIndex: 'medico', key: 'medico' },
@@ -33,37 +52,33 @@ export const Columns = ({ addAtendimento, onRemove }: ColumnsProps): ColumnsType
         </Tag>
       ),
     },
-    {
+  ]
+
+  if (showActions) {
+    baseColumns.push({
       title: 'Ações',
       key: 'acoes',
-      render: (_, record) => (
-        <Space>
-          {record.status === 'agendado' && (
+      render: (_, record) =>
+        record.status === 'agendado' ? (
+          <Space>
             <Button
               size="small"
               type="primary"
-              onClick={() => {
-                addAtendimento.mutate({ ...record, status: 'atendido' })
-                onRemove(record.id)
-              }}
+              onClick={() => handleAction(record, 'atendido')}
             >
               Atender
             </Button>
-          )}
-          {record.status === 'agendado' && (
             <Button
               size="small"
               danger
-              onClick={() => {
-                addAtendimento.mutate({ ...record, status: 'cancelado' })
-                onRemove(record.id)
-              }}
+              onClick={() => handleAction(record, 'cancelado')}
             >
               Cancelar
             </Button>
-          )}
-        </Space>
-      ),
-    },
-  ]
+          </Space>
+        ) : null,
+    })
+  }
+
+  return baseColumns
 }

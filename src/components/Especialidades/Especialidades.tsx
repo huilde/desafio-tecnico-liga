@@ -7,16 +7,17 @@ import PageHeader from "../PageHeader/PageHeader"
 import CreationModal from "../CreationModal/CreationModal"
 
 import { useState } from "react"
+import { PlusOutlined } from "@ant-design/icons";
 
 const Especialidades = () => {
-  const [open, setOpen] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const { data: especialidades, isLoading, addEspecialidade, error } = useEspecialidades();
 
   const handleCreate = async (values: any) => {
     try {
       await addEspecialidade.mutateAsync(values);
       message.success("Especialidade criada com sucesso!");
-      setOpen(false);
+      setIsOpenModal(false);
     } catch (error) {
       message.error("Erro ao criar especialidade!");
     }
@@ -29,7 +30,7 @@ const Especialidades = () => {
       <PageHeader
         title="Especialidades Médicas"
         description="Gerencie as especialidades disponíveis para agendamento"
-        action={<Button color="danger" variant="solid" onClick={() => setOpen(true)}>+ Adicionar Especialidade</Button>}
+        action={<Button color="danger" icon={<PlusOutlined />} variant="solid" onClick={() => setIsOpenModal(true)}>Adicionar Especialidade</Button>}
       />
 
       <div className="flex flex-wrap gap-[16px]">
@@ -47,9 +48,9 @@ const Especialidades = () => {
       </div>
 
       <CreationModal
-        open={open}
+        open={isOpenModal}
         title="Cadastrar Especialidade"
-        onCancel={() => setOpen(false)}
+        onCancel={() => setIsOpenModal(false)}
         onSubmit={handleCreate}
         fields={[
           {

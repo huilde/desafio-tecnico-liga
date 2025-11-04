@@ -8,6 +8,7 @@ import ModalCreateAgendamento from '../ModalCreateAgendamento/ModalCreateAgendam
 import { useConvenios } from '../../hooks/useConvenios'
 import { useEspecialidades } from '../../hooks/useEspecialidades'
 import { useAddAgendamento, useDeleteAgendamento } from '../../hooks/useAgendamentos'
+import { PlusOutlined } from '@ant-design/icons'
 interface ScheduleListTableProps {
   data?: { agendamentos: Agendamento[] | undefined; atendimentos: Atendimento[] | undefined }
   isLoading?: boolean
@@ -70,7 +71,7 @@ const ScheduleListTable: React.FC<ScheduleListTableProps> = ({ data, isLoading, 
           onChange={(val) => setView(val as 'agendamentos' | 'atendimentos')}
         />
 
-        <Button color="danger" variant="solid" className="text-xl font-bold" onClick={() => setIsOpenModal(true)} >+ Novo Agendamento</Button>
+        <Button color="danger" variant="solid" icon={<PlusOutlined />} className="text-xl font-bold" onClick={() => setIsOpenModal(true)} >Novo Agendamento</Button>
       </div>
 
       <Table
@@ -78,9 +79,10 @@ const ScheduleListTable: React.FC<ScheduleListTableProps> = ({ data, isLoading, 
         columns={Columns({
           addAtendimento,
           onRemove: handleRemoveAgendamento,
+          showActions: view === 'agendamentos',
         })}
         rowKey="id"
-        pagination={{ pageSize: 5 }}
+        pagination={{ pageSize: 8 }}
       />
 
       <ModalCreateAgendamento convenios={convenios} medicos={medicos} especialidades={especialidades} visible={isOpenModal} onSubmit={handleSubmit} onClose={() => setIsOpenModal(false)} />

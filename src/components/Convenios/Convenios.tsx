@@ -6,17 +6,18 @@ import PageHeader from "../PageHeader/PageHeader"
 import { useConvenios } from "../../hooks/useConvenios"
 import CreationModal from "../CreationModal/CreationModal"
 import { useState } from "react"
+import { PlusOutlined } from "@ant-design/icons";
 
 const Convenios = () => {
   const { data: convenios, isLoading, error, addConvenio } = useConvenios()
 
-  const [open, setOpen] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const handleCreate = async (values: any) => {
     try {
       await addConvenio.mutateAsync(values);
       message.success("Convênio criado com sucesso!");
-      setOpen(false);
+      setIsOpenModal(false);
     } catch {
       message.error("Erro ao criar convênio!");
     }
@@ -30,7 +31,8 @@ const Convenios = () => {
       <PageHeader
         title="Convênios Médicos"
         description="Gerencie os convênios aceitos pela clínica"
-        action={<Button color="danger" variant="solid" onClick={() => setOpen(true)}>+ Adicionar Convênio</Button>}
+        action={<Button color="danger" variant="solid" icon={<PlusOutlined />}
+          onClick={() => setIsOpenModal(true)}> Adicionar Convênio</Button>}
       />
 
       <div className="flex flex-wrap gap-[16px]">
@@ -47,9 +49,9 @@ const Convenios = () => {
         ))}
       </div>
       <CreationModal
-        open={open}
+        open={isOpenModal}
         title="Cadastrar Convênio"
-        onCancel={() => setOpen(false)}
+        onCancel={() => setIsOpenModal(false)}
         onSubmit={handleCreate}
         fields={[
           { name: "nome", label: "Nome do Convênio", required: true, placeholder: "Ex: Unimed, Amil..." },

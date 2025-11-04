@@ -14,7 +14,11 @@ export interface Convenio {
 
 export interface Disponibilidade {
   data: string
-  horarios: string[]
+  id: number
+  nome: string
+  especialidadeId: number
+  especialidade: string
+  horarios: { disponivel: boolean; hora: string }[]
 }
 
 export interface Agendamento {

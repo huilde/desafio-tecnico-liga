@@ -6,7 +6,7 @@ import { Stethoscope } from "lucide-react";
 import { Shield } from "lucide-react";
 import Convenios from '../Convenios/Convenios';
 import Agendamentos from '../agendamentos/Agendamentos';
-import DisponibilidadePage from '../Disponibilidade/Disponibilidade';
+import Disponibilidade from '../Disponibilidade/Disponibilidade';
 
 
 export const TAB_ITEMS: TabsProps['items'] = [
@@ -21,19 +21,18 @@ export const TAB_ITEMS: TabsProps['items'] = [
     key: '2',
     label: 'Especialidades',
     children: <Especialidades />,
-    icon: <Stethoscope size={16} />
+    icon: <Stethoscope size={14} />
   },
   {
     key: '3',
     label: 'Convênios',
     children: <Convenios />,
-    icon: <Shield size={16} />
+    icon: <Shield size={14} />
   },
   {
     key: '4',
     label: 'Disponibilidade',
-    children: <DisponibilidadePage />,
+    children: <Disponibilidade />,
     icon: <FieldTimeOutlined />,
-    disabled: true,
   },
 ];

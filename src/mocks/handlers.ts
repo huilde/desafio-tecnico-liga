@@ -19,12 +19,12 @@ export const handlers = [
     return HttpResponse.json(nova, { status: 201 });
   }),
 
-   http.get("/api/convenios", () => {
+  http.get("/api/convenios", () => {
     return HttpResponse.json(convenios)
   }),
 
 
- http.post('/api/convenios', async ({ request }) => {
+  http.post('/api/convenios', async ({ request }) => {
     const novoConvenio = await request.json()
     const created = {
       id: convenios.length + 1,
@@ -41,16 +41,9 @@ export const handlers = [
     return HttpResponse.json({ message: 'Disponibilidade definida com sucesso' })
   }),
 
-  http.post('/api/disponibilidades', async ({ request }) => {
-    const { data } = (await request.json()) as { data: string }
+  http.get('/api/disponibilidades', async () => {
 
-    const horarios = [
-      { hora: '09:00', status: 'livre' },
-      { hora: '10:00', status: 'ocupado' },
-      { hora: '11:00', status: 'livre' },
-    ]
-
-    return HttpResponse.json({ data, horarios })
+    return HttpResponse.json(disponibilidades)
   }),
 
   http.get('/api/agendamentos', () => {
@@ -58,7 +51,7 @@ export const handlers = [
   }),
 
   http.post('/api/agendamentos', async ({ request }) => {
-      const novoAgendamento = await request.json()
+    const novoAgendamento = await request.json()
     const id = agendamentos.length + 1
     const novoAgendamentoComId = { id, ...novoAgendamento as object }
     agendamentos.push(novoAgendamentoComId as Atendimento)
@@ -66,15 +59,15 @@ export const handlers = [
 
   }),
 
-    http.delete('/api/agendamentos/:id', (req) => {
-    const { id } = req.params; 
+  http.delete('/api/agendamentos/:id', (req) => {
+    const { id } = req.params;
     const index = agendamentos.findIndex(a => a.id === Number(id));
 
     if (index === -1) {
       return new Response(JSON.stringify({ message: 'Agendamento não encontrado' }), { status: 404 });
     }
 
-    const deleted = agendamentos.splice(index, 1)[0]; // remove do array
+    const deleted = agendamentos.splice(index, 1)[0];
     return new Response(JSON.stringify(deleted), { status: 200 });
   }),
 

@@ -3,7 +3,7 @@ import React from "react"
 interface PageHeaderProps {
   title: string
   description?: string
-  action?: React.ReactNode // Ex: <Button>Adicionar</Button>
+  action?: React.ReactNode
   className?: string
 }
 
