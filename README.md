@@ -52,7 +52,31 @@ Caso queira ver o sistema sem precisar rodar o docker poderá acessar através d
 docker-compose up --build
 ``` 
 
-3. abra o navegador: http://localhost:3000
+3. abra o navegador: http://localhost:5173
+
+
+
+
+## 🧩 Como rodar o projeto localmente
+
+1. Clonar o repositório
+
+```bash
+    git clone https://github.com/huilde/desafio-tecnico-liga.git
+    cd desafio-tecnico-liga
+```
+
+2.  Instalar dependências 
+```bash
+    npm install
+```
+
+- 3️⃣ Rodar em modo desenvolvimento
+```bash
+    npm run dev
+```
+
+- Abra no navegador: http://localhost:5173
 
 
 ## 🧩 Configuração do Projeto

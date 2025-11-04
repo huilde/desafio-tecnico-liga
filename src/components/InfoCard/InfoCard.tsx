@@ -11,7 +11,7 @@ interface InfoCardProps {
 
 const InfoCard: React.FC<InfoCardProps> = ({ title, value, icon, iconColor, bgColor }) => {
   return (
-    <Card className="w-[23vw] min-w-[200px] p-[16px] shadow-md">
+    <Card className="w-[19vw] min-w-[200px] p-[16px] shadow-md">
       <div className="flex justify-between items-center">
         <div className="flex flex-col">
           <p className="text-[#717182] text-[16px]">{title}</p>

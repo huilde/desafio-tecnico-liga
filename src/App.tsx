@@ -6,8 +6,8 @@ function App() {
 
   return (
     <>
-  <Header/>
-  <MainTab/>
+      <Header />
+      <MainTab />
     </>
   )
 }

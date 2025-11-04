@@ -74,7 +74,7 @@ const ScheduleListTable: React.FC<ScheduleListTableProps> = ({ data, isLoading, 
   }
 
   return (
-    <div className="m-[16px]">
+    <div className="my-[16px]">
       {contextHolder}
       <div className="flex justify-between items-center mb-4 m-[16px]">
         <Segmented

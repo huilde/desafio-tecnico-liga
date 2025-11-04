@@ -20,7 +20,7 @@ const DetailedCard: React.FC<DetailedCardProps> = ({
   description,
 }) => {
   return (
-    <Card className="w-[30vw] min-w-[250px] p-[16px] shadow-sm gap-[8px] flex flex-col">
+    <Card className="w-full min-w-[250px] p-[16px] shadow-sm gap-[8px] flex flex-col">
       <div className="flex justify-between items-center">
         <div className="flex flex-row items-center gap-[12px]">
           <div
@@ -36,8 +36,8 @@ const DetailedCard: React.FC<DetailedCardProps> = ({
           </div>
         </div>
         <div className="flex flex-row">
-          <Button type="text" icon={<EditOutlined />} size="small" />
-          <Button type="text" icon={<DeleteOutlined />} size="small" />
+          <Button disabled type="text" icon={<EditOutlined />} size="small" />
+          <Button disabled type="text" icon={<DeleteOutlined />} size="small" />
 
         </div>
       </div>

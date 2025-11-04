@@ -17,7 +17,7 @@ const SchedulingMenu: React.FC<SchedulingMenuProps> = ({ data }) => {
 
 
   return (
-    <div className="flex flex-wrap gap-[16px] m-[16px]">
+    <div className="flex flex-wrap gap-[16px] my-[16px]">
       <InfoCard
         title="Total de Agendamentos"
         value={totalAtendimentos + totalAgendamentos}

@@ -64,7 +64,7 @@ export const Columns = ({
       key: 'acoes',
       render: (_, record) =>
         record.status === 'agendado' ? (
-          <Space>
+          <Space align='center' justify='center'>
             <Button
               size="small"
               type="primary"

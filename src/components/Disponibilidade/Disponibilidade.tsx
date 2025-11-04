@@ -91,7 +91,7 @@ const Disponibilidade = () => {
       />
 
       <div className="flex gap-6">
-        <Card className="w-[380px] bg-white rounded-xl p-4 shadow-sm mr-[16px] pr-[100px]" >
+        <Card className="w-[380px] bg-white rounded-xl p-4 shadow-sm mr-[16px] px-[24px] max-h-[400px]" >
           <Calendar
             validRange={[dayjs().startOf('day'), dayjs().startOf('day').add(3, 'month')]}
             fullscreen={false}
